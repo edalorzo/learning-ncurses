@@ -1,8 +1,11 @@
 #define _XOPEN_SOURCE_EXTENDED 1
 
+#include<array>
+#include<vector>
 #include<ncurses.h>
 #include<clocale>
 #include<cstring>
+#include <string>
 
 #define COUNT 5
 #define PINK 1
@@ -13,6 +16,131 @@ void center(int row, char *title);
 int kbhit();
 
 int main() {
+    initscr();
+
+    start_color();
+
+    /* configure colors*/
+    init_pair(1, COLOR_WHITE, COLOR_BLACK);
+    init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(3, COLOR_BLUE, COLOR_BLACK);
+    init_pair(4, COLOR_GREEN, COLOR_BLACK);
+
+    addch(ACS_ULCORNER);
+    for(int i = 0; i < 5; i++) {
+        addch(ACS_HLINE);
+    }
+    addch(ACS_TTEE);
+    for(int i = 0; i < 5; i++) {
+        addch(ACS_HLINE);
+    }
+    addch(ACS_URCORNER);
+    printw("\n");
+    addch(ACS_VLINE);
+    for(int i = 0; i < 5; i++) {
+        if (i == 2) {
+            addch('1' | COLOR_PAIR(1) | A_UNDERLINE);
+        } else {
+            addch(' ');
+        }
+    }
+    addch(ACS_VLINE);
+    for(int i = 0; i < 5; i++) {
+        if (i == 2) {
+            addch('2' | COLOR_PAIR(2));
+        } else {
+            addch(' ');
+        }
+    }
+    addch(ACS_VLINE);
+    printw("\n");
+    addch(ACS_LTEE);
+    for(int i = 0; i < 5; i++) {
+        addch(ACS_HLINE);
+    }
+    addch(ACS_PLUS);
+    for(int i = 0; i < 5; i++) {
+        addch(ACS_HLINE);
+    }
+    addch(ACS_RTEE);
+    printw("\n");
+    addch(ACS_VLINE);
+    for(int i = 0; i < 5; i++) {
+        if (i == 2) {
+            addch('3' | COLOR_PAIR(3));
+        } else {
+            addch(' ');
+        }
+    }
+    addch(ACS_VLINE);
+    for(int i = 0; i < 5; i++) {
+        if (i == 2) {
+            addch('4' | COLOR_PAIR(4) | A_BOLD);
+        } else {
+            addch(' ');
+        }
+    }
+    addch(ACS_VLINE);
+    printw("\n");
+    addch(ACS_LLCORNER);
+    for(int i = 0; i < 5; i++) {
+        addch(ACS_HLINE);
+    }
+    addch(ACS_BTEE);
+    for(int i = 0; i < 5; i++) {
+        addch(ACS_HLINE);
+    }
+    addch(ACS_LRCORNER);
+    printw("\n");
+
+    getch();
+    endwin();
+    return 0;
+
+}
+
+int basic53() {
+
+    printw("Upper left corner           "); addch(ACS_ULCORNER); printw("\n");
+    printw("Lower left corner           "); addch(ACS_LLCORNER); printw("\n");
+    printw("Lower right corner          "); addch(ACS_LRCORNER); printw("\n");
+    printw("Tee pointing right          "); addch(ACS_LTEE); printw("\n");
+    printw("Tee pointing left           "); addch(ACS_RTEE); printw("\n");
+    printw("Tee pointing up             "); addch(ACS_BTEE); printw("\n");
+    printw("Tee pointing down           "); addch(ACS_TTEE); printw("\n");
+    printw("Horizontal line             "); addch(ACS_HLINE); printw("\n");
+    printw("Vertical line               "); addch(ACS_VLINE); printw("\n");
+    printw("Large Plus or cross over    "); addch(ACS_PLUS); printw("\n");
+    printw("Scan Line 1                 "); addch(ACS_S1); printw("\n");
+    printw("Scan Line 3                 "); addch(ACS_S3); printw("\n");
+    printw("Scan Line 7                 "); addch(ACS_S7); printw("\n");
+    printw("Scan Line 9                 "); addch(ACS_S9); printw("\n");
+    printw("Diamond                     "); addch(ACS_DIAMOND); printw("\n");
+    printw("Checker board (stipple)     "); addch(ACS_CKBOARD); printw("\n");
+    printw("Degree Symbol               "); addch(ACS_DEGREE); printw("\n");
+    printw("Plus/Minus Symbol           "); addch(ACS_PLMINUS); printw("\n");
+    printw("Bullet                      "); addch(ACS_BULLET); printw("\n");
+    printw("Arrow Pointing Left         "); addch(ACS_LARROW); printw("\n");
+    printw("Arrow Pointing Right        "); addch(ACS_RARROW); printw("\n");
+    printw("Arrow Pointing Down         "); addch(ACS_DARROW); printw("\n");
+    printw("Arrow Pointing Up           "); addch(ACS_UARROW); printw("\n");
+    printw("Board of squares            "); addch(ACS_BOARD); printw("\n");
+    printw("Lantern Symbol              "); addch(ACS_LANTERN); printw("\n");
+    printw("Solid Square Block          "); addch(ACS_BLOCK); printw("\n");
+    printw("Less/Equal sign             "); addch(ACS_LEQUAL); printw("\n");
+    printw("Greater/Equal sign          "); addch(ACS_GEQUAL); printw("\n");
+    printw("Pi                          "); addch(ACS_PI); printw("\n");
+    printw("Not equal                   "); addch(ACS_NEQUAL); printw("\n");
+    printw("UK pound sign               "); addch(ACS_STERLING); printw("\n");
+
+    refresh();
+    getch();
+    endwin();
+
+    return 0;
+}
+
+int basic52() {
     WINDOW *second;
 
     initscr();
@@ -703,6 +831,7 @@ int basic22() {
     initscr();
 
     addch(ACS_ULCORNER);
+
     addch(ACS_HLINE);
     addch(ACS_URCORNER);
     addch('\n');
