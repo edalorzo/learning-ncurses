@@ -13,6 +13,71 @@ void center(int row, char *title);
 int kbhit();
 
 int main() {
+    WINDOW *second;
+
+    initscr();
+    start_color();
+
+    /* configure colors*/
+    init_pair(1, COLOR_WHITE, COLOR_BLUE);
+    init_pair(2, COLOR_WHITE, COLOR_RED);
+
+    /* create the second window*/
+    second = newwin(0,0,0,0);
+    if(second == nullptr) {
+        endwin();
+        puts("Unable to create window");
+        return 1;
+    }
+    wbkgd(second, COLOR_PAIR(2));
+    waddstr(second, "This is the second window");
+
+    /* standard screen*/
+    bkgd(COLOR_PAIR(1));
+    addstr("This is the standard screen\n");
+    addstr("Press enter");
+    refresh();
+    getch();
+
+    /* show second window*/
+    wrefresh(second);
+    getch();
+
+    // show standard windows again
+    touchwin(stdscr);
+    refresh();
+    getch();
+
+    endwin();
+    return 0;
+}
+
+// pop up a new window
+int basic51() {
+
+    WINDOW *another;
+
+    initscr();
+    addstr("This is the standard screen\n");
+    refresh();
+    getch();
+
+    /* create another window */
+    another = newwin(0,0,0,0);
+    if(another == nullptr) {
+        addstr("Unable to create window");
+        refresh();
+        getch();
+    }
+    else {
+        waddstr(another, "This is another window");
+        wrefresh(another);
+        wgetch(another);
+    }
+
+    endwin();
+    return 0;
+
     return 0;
 }
 
